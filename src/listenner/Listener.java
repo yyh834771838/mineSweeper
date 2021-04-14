@@ -48,7 +48,7 @@ public class Listener implements MouseListener {
 		int col = mineLable.getColy();
 
 		if (e.getModifiersEx() == InputEvent.BUTTON1_DOWN_MASK
-				+ InputEvent.BUTTON3_DOWN_MASK) {
+				+ InputEvent.BUTTON3_DOWN_MASK) { //左键和右键同时按下
 			isDoublePress = true;//双击
 			doublePress(row, col);
 
@@ -94,14 +94,14 @@ public class Listener implements MouseListener {
 			isDoublePress = false;
 			if (mineLable.isExpendTag() == false
 					&& mineLable.isFlagTag() == false) {
-				backIcon(row, col);
+				backIcon(row, col);//没插旗 没打开
 			} else {
 
 				boolean isEquals = isEquals(row, col);
 				if (isEquals) {
-					doubleExpend(row, col);
+					doubleExpend(row, col);//已经插满了旗子 打开周围的未插旗的格子
 				} else {
-					backIcon(row, col);
+					backIcon(row, col);//还没插满一定数量的旗子
 
 				}
 
@@ -114,27 +114,23 @@ public class Listener implements MouseListener {
 			if (StaticTool.isStart == false) {
 				LayBomb.lay(this.mineLable, row, col);
 
-				StaticTool.isStart = true;
+				StaticTool.isStart = true;//假如没开始
+				mainFrame.getTimer().start();
 
 			}
-			mainFrame.getTimer().start();
+
 
 			if (mineLable.isMineTag() == true) {
-
 				bombAction(row, col);
-
-				mineLable.setIcon(StaticTool.bloodIcon);
+				mineLable.setIcon(StaticTool.bloodIcon); //设定红色的雷
 				mainFrame.getFaceJPanel().getLabelFace()
-						.setIcon(StaticTool.faultFaceIcon);
+						.setIcon(StaticTool.faultFaceIcon);//点到雷之后会显示哭脸
 			} else {
 				mainFrame.getFaceJPanel().getLabelFace()
 						.setIcon(StaticTool.smileIcon);
 				expand(row, col);
-
 			}
-
 		}
-
 		isWin();
 	}
 
@@ -235,7 +231,7 @@ public class Listener implements MouseListener {
 		return false;
 	}
 
-	private void doublePress(int i, int j) {//方法有点奇怪 右键点击过一次和点击过两次？
+	private void doublePress(int i, int j) {// 点击未打开的方格。假如为旗子，那么变成问号
 		for (int x = Math.max(0, i - 1); x <= Math.min(StaticTool.allrow - 1,
 				i + 1); x++) {
 			for (int y = Math.max(0, j - 1); y <= Math.min(
@@ -243,7 +239,7 @@ public class Listener implements MouseListener {
 				if (mineLable[x][y].isExpendTag() == false
 						&& mineLable[x][y].isFlagTag() == false) {
 					int rightClickCount = mineLable[x][y].getRightClickCount();
-					if (rightClickCount == 1) {
+					if (rightClickCount == 1) { //已经右键点击过一次 那么就会周围的全部设置为问号
 						mineLable[x][y].setIcon(StaticTool.askPressIcon);
 					} else {
 						mineLable[x][y].setIcon(StaticTool.icon0);
