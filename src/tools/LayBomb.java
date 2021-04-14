@@ -6,7 +6,6 @@ import bean.MineLable;
 
 public class LayBomb {
 	public static void lay(MineLable[][] lable, int row, int col) {
-
 		int count = 0;
 		Random random = new Random();
 		while (count < StaticTool.allcount) {
@@ -43,9 +42,7 @@ public class LayBomb {
 							}
 						}
 					}
-
 					lable[i][j].setCounAround(count);
-
 				}
 
 			}
