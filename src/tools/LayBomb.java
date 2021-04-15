@@ -5,6 +5,17 @@ import java.util.Random;
 import bean.MineLable;
 
 public class LayBomb {
+	public static int moban[][] = {
+			{0,0,1,1,0,1,0,0,0},
+			{0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,1},
+			{0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,1,0},
+			{0,0,0,0,0,0,0,0,1},
+			{0,0,0,0,0,1,0,0,1},
+			{1,0,0,0,1,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0}
+	};
 	public static int returnCount = 0;
 	public MineLable[][] labels = new MineLable[StaticTool.allrow][StaticTool.allcol];
 	public void init(){
@@ -33,7 +44,7 @@ public class LayBomb {
 		returnCount = count;
 		computeBomb(lable);
 	}
-	public static void lay_11(MineLable[][] lable, int row, int col) {//???11????
+	public static void lay_11(MineLable[][] lable, int row, int col) {//指定生成一个雷在1 1区域
 		int count = 1;
 		Random random = new Random();
 		lable[1][1].setMineTag(true);
@@ -54,6 +65,20 @@ public class LayBomb {
 			}
 		}
 		returnCount = count;
+		computeBomb(lable);
+	}
+	public static void lay_mount(MineLable[][] lable, int row, int col) {//指定生成十个雷在默认区域
+		for(int i=0;i<9;i++){
+			for(int j=0;j<9;j++){
+				if(moban[i][j]==1){
+					lable[i][j].setMineTag(true);
+					lable[i][j].setCounAround(9);
+					if( StaticTool.isHole == true) {
+						lable[i][j].setIcon(StaticTool.holeIcon);
+					}
+				}
+			}
+		}
 		computeBomb(lable);
 	}
 	public static void computeBomb(MineLable lable[][]) {

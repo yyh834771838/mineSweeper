@@ -122,7 +122,7 @@ public class Listener implements MouseListener {
 
 
 			if (mineLable.isMineTag() == true) {
-				bombAction(row, col);
+				bombAction(row, col);//显示所有的雷
 				mineLable.setIcon(StaticTool.bloodIcon); //设定红色的雷
 				mainFrame.getFaceJPanel().getLabelFace()
 						.setIcon(StaticTool.faultFaceIcon);//点到雷之后会显示哭脸
@@ -135,7 +135,7 @@ public class Listener implements MouseListener {
 		isWin();
 	}
 
-	public void bombAction_1(int row,int col){//?????淽??????????????????????????????
+	public void bombAction_1(int row,int col){
 		bombAction(row,col);
 		mainFrame.getFaceJPanel().getLabelFace().setIcon(StaticTool.faultFaceIcon);
 	}
@@ -169,13 +169,12 @@ public class Listener implements MouseListener {
 
 	}
 
-	private void expand(int x, int y) {
+	public void expand(int x, int y) {
 
 		int count = mineLable[x][y].getCounAround();
 
 		if (mineLable[x][y].isExpendTag() == false
 				&& mineLable[x][y].isFlagTag() == false) {
-
 			if (count == 0) {
 				mineLable[x][y].setIcon(StaticTool.num[count]);
 				mineLable[x][y].setExpendTag(true);
@@ -184,16 +183,12 @@ public class Listener implements MouseListener {
 					for (int j = Math.max(0, y - 1); j <= Math.min(
 							mineLable[x].length - 1, y + 1); j++) {
 						expand(i, j); //深度优先搜索 不断扩展周围为没有雷的 并且显示图标
-
 					}
-
 				}
 
 			} else {
-
 				mineLable[x][y].setIcon(StaticTool.num[count]);//假如周围有雷 那么不扩展 并且设置扩展tag为true
 				mineLable[x][y].setExpendTag(true);
-
 			}
 
 		}
