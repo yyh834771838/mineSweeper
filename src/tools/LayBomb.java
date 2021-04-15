@@ -5,6 +5,16 @@ import java.util.Random;
 import bean.MineLable;
 
 public class LayBomb {
+	public static int returnCount = 0;
+	public MineLable[][] labels = new MineLable[StaticTool.allrow][StaticTool.allcol];
+	public void init(){
+		for (int i = 0; i < labels.length; i++) {
+			for (int j = 0; j < labels[i].length; j++) {
+				labels[i][j] = new MineLable(i, j);
+				labels[i][j].setIcon(StaticTool.iconBlank);
+			}
+		};
+	}
 	public static void lay(MineLable[][] lable, int row, int col) {
 		int count = 0;
 		Random random = new Random();
@@ -17,12 +27,10 @@ public class LayBomb {
 				if (StaticTool.isHole == true) {
 					lable[x][y].setIcon(StaticTool.holeIcon);
 				}
-
 				count++;
 			}
-
 		}
-
+		returnCount = count;
 		computeBomb(lable);
 	}
 
@@ -38,7 +46,6 @@ public class LayBomb {
 								StaticTool.allcol - 1, j + 1); y++) {
 							if (lable[x][y].isMineTag() == true) {
 								count++;
-
 							}
 						}
 					}

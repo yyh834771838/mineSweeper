@@ -56,7 +56,6 @@ public class Listener implements MouseListener {
 				&& mineLable.isFlagTag() == false) {
 			if (mineLable.isExpendTag() == false) {
 				mineLable.setIcon(StaticTool.icon0); //点开没有空格的
-
 			}
 			mainFrame.getFaceJPanel().getLabelFace()
 					.setIcon(StaticTool.clickIcon); //点击时表情变化
