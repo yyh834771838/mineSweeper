@@ -41,7 +41,20 @@ public class Listener implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 
 	}
-
+	public void rightClick_1(int x,int y){
+		mineLable[x][y].setIcon(StaticTool.flagIcon);
+		mineLable[x][y].setRightClickCount(1);
+		mineLable[x][y].setFlagTag(true);
+		StaticTool.bombCount--;
+		mainFrame.getFaceJPanel().setNumber(StaticTool.bombCount);//右键时将雷数减一
+	}
+	public void rightClick_2(int x,int y){
+		mineLable[x][y].setIcon(StaticTool.askIcon);
+		mineLable[x][y].setRightClickCount(2);
+		mineLable[x][y].setFlagTag(false);
+		StaticTool.bombCount++;
+		mainFrame.getFaceJPanel().setNumber(StaticTool.bombCount);//右键第二下将旗子变为问号
+	}
 	@Override
 	public void mousePressed(MouseEvent e) {
 		MineLable mineLable = (MineLable) e.getSource();
