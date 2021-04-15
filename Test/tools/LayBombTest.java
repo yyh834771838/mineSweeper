@@ -18,14 +18,4 @@ public class LayBombTest {
         layBomb.lay(layBomb.labels, StaticTool.allrow,StaticTool.allcol);
         assertEquals(10,LayBomb.returnCount);
     }
-    @Test
-    public void test1(){
-        MainFrame mainFrame = new MainFrame();
-        Listener listener = mainFrame.getBombJPanel().getListener();
-        LayBomb.lay_11(listener.getMineLable(),9,9);
-        listener.bombAction(9,9);
-        assertEquals(1,1);
-        assertEquals(listener.getMineLable()[1][1].getIcon(),StaticTool.blackBombIcon);
-    }
-
 }
