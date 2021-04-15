@@ -24,7 +24,9 @@ public class Listener implements MouseListener {
 		this.mainFrame = mainFrame;
 
 	}
-
+	public MineLable[][] getMineLable() {
+		return mineLable;
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
@@ -133,7 +135,12 @@ public class Listener implements MouseListener {
 		isWin();
 	}
 
-	private void bombAction(int row, int col) {//点击到雷之后
+	public void bombAction_1(int row,int col){//?????淽??????????????????????????????
+		bombAction(row,col);
+		mainFrame.getFaceJPanel().getLabelFace().setIcon(StaticTool.faultFaceIcon);
+	}
+
+	public void bombAction(int row, int col) {//点击到雷之后
 
 		for (int i = 0; i < mineLable.length; i++) {
 			for (int j = 0; j < mineLable[i].length; j++) {

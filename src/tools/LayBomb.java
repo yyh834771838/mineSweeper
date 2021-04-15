@@ -33,7 +33,29 @@ public class LayBomb {
 		returnCount = count;
 		computeBomb(lable);
 	}
-
+	public static void lay_11(MineLable[][] lable, int row, int col) {//???11????
+		int count = 1;
+		Random random = new Random();
+		lable[1][1].setMineTag(true);
+		lable[1][1].setCounAround(9);
+		if( StaticTool.isHole == true) {
+			lable[1][1].setIcon(StaticTool.holeIcon);
+		}
+		while (count < StaticTool.allcount) {
+			int x = random.nextInt(StaticTool.allrow);
+			int y = random.nextInt(StaticTool.allcol);
+			if (lable[x][y].isMineTag() == false && !(x == row && y == col)) {
+				lable[x][y].setMineTag(true);
+				lable[x][y].setCounAround(9);
+				if (StaticTool.isHole == true) {
+					lable[x][y].setIcon(StaticTool.holeIcon);
+				}
+				count++;
+			}
+		}
+		returnCount = count;
+		computeBomb(lable);
+	}
 	public static void computeBomb(MineLable lable[][]) {
 
 		for (int i = 0; i < lable.length; i++) {
