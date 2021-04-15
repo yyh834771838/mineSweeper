@@ -274,7 +274,7 @@ public class Listener implements MouseListener {
 
 	}
 
-	private void isWin() {
+	public void isWin() {
 
 		int needCount = StaticTool.allrow * StaticTool.allcol
 				- StaticTool.allcount;
@@ -296,7 +296,6 @@ public class Listener implements MouseListener {
 						mineLable[i][j].setIcon(StaticTool.flagIcon); //假如没有设置旗子，那么自动设置旗子
 						mineLable[i][j].setFlagTag(true);//并且将flagTag设置为true
 					}
-
 				}
 
 			}
@@ -342,5 +341,45 @@ public class Listener implements MouseListener {
 		}
 
 	}
+	public void isWin_init() {// 未设置登记名字
 
+		int needCount = StaticTool.allrow * StaticTool.allcol
+				- StaticTool.allcount;
+		int expendCount = 0;
+		for (int i = 0; i < mineLable.length; i++) {
+			for (int j = 0; j < mineLable[i].length; j++) {
+				if (mineLable[i][j].isExpendTag()) {
+					expendCount++; //是否已经被打开 就是显示数字的地方
+				}
+
+			}
+
+		}
+		if (needCount == expendCount) {
+			for (int i = 0; i < mineLable.length; i++) {
+				for (int j = 0; j < mineLable[i].length; j++) {
+					if (mineLable[i][j].isMineTag()
+							&& mineLable[i][j].isFlagTag() == false) {
+						mineLable[i][j].setIcon(StaticTool.flagIcon); //假如没有设置旗子，那么自动设置旗子
+						mineLable[i][j].setFlagTag(true);//并且将flagTag设置为true
+					}
+				}
+
+			}
+
+			mainFrame.getFaceJPanel().setNumber(0); //设置剩余雷数为0
+			mainFrame.getTimer().stop();//胜利之后不能再点击雷盘
+			for (int i = 0; i < mineLable.length; i++) {
+				for (int j = 0; j < mineLable[i].length; j++) {
+					mineLable[i][j].removeMouseListener(this);
+
+				}
+			}
+
+			mainFrame.getFaceJPanel().getLabelFace()
+					.setIcon(StaticTool.winFaceIcon); //表情变化 胜利图标
+
+		}
+
+	}
 }

@@ -16,6 +16,18 @@ public class LayBomb {
 			{1,0,0,0,1,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0}
 	};
+	public static int win_moban[][] = {
+			{1,1,0,0,1,0,1,1,1},
+			{1,1,1,1,1,1,1,1,1},
+			{1,1,1,1,1,1,1,1,0},
+			{1,1,1,1,1,1,1,1,1},
+			{1,1,1,1,1,1,1,0,1},
+			{1,1,1,1,1,1,1,1,0},
+			{1,1,1,1,1,0,1,1,0},
+			{0,1,1,1,0,1,1,1,1},
+			{1,1,1,1,1,1,1,1,1}
+	};
+
 	public static int returnCount = 0;
 	public MineLable[][] labels = new MineLable[StaticTool.allrow][StaticTool.allcol];
 	public void init(){
@@ -81,8 +93,23 @@ public class LayBomb {
 		}
 		computeBomb(lable);
 	}
+	public static void lay_win(MineLable[][] lable, int row, int col){//指定空格全打开 测试
+		for(int i=0;i<9;i++){
+			for(int j=0;j<9;j++){
+				if(win_moban[i][j]==1){
+					lable[i][j].setExpendTag(true);
+				}else{
+					lable[i][j].setMineTag(true);
+					lable[i][j].setCounAround(9);
+					if( StaticTool.isHole == true) {
+						lable[i][j].setIcon(StaticTool.holeIcon);
+					}
+				}
+			}
+		}
+		computeBomb(lable);
+	}
 	public static void computeBomb(MineLable lable[][]) {
-
 		for (int i = 0; i < lable.length; i++) {
 			for (int j = 0; j < lable[i].length; j++) {
 				if (lable[i][j].isMineTag() == false) {
