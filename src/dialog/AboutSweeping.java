@@ -77,13 +77,13 @@ public class AboutSweeping extends JDialog {
 		labelTwo = new JLabel("作品说明：javaSE项目    ");
 		boxTwo = Box.createHorizontalBox();
 		boxTwo.add(labelTwo);
-		labelThree = new JLabel("指导老师：捷盈教育--李龙");
+		labelThree = new JLabel("指导老师：武剑洁");
 		boxThree = Box.createHorizontalBox();
 		boxThree.add(labelThree);
-		labelFour = new JLabel("版权所有：fjut--刘向峰  ");
+		labelFour = new JLabel("版权所有：hust-软件学院  ");
 		boxFour = Box.createHorizontalBox();
 		boxFour.add(labelFour);
-		labelFive = new JLabel("制作时间：2012.6.1      ");
+		labelFive = new JLabel("制作时间：2021.3.21  ");
 		boxFive = Box.createHorizontalBox();
 		boxFive.add(labelFive);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
