@@ -130,7 +130,6 @@ public class BombJMenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new HeroDialog(2, mainFrame);
-
 			}
 		});
 		menuHero.add(menuHeroG);
