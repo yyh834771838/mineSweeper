@@ -29,6 +29,9 @@ public class BombJPanel extends JPanel {
 		init();
 
 	}
+	public Listener getListener() {
+		return listener;
+	}
 
 	private void init() {
 
