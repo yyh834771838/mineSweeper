@@ -44,6 +44,24 @@ public class FaceJPanel extends JPanel {
 	public JLabel getLabelFace() {
 		return labelFace;
 	}
+	public JLabel getLabelTimeG() {
+		return labelTimeG;
+	}
+	public JLabel getLabelTimeB() {
+		return labelTimeB;
+	}
+	public JLabel getLabelTimeS() {
+		return labelTimeS;
+	}
+	public JLabel getLabelCountG() {
+		return labelCountG;
+	}
+	public JLabel getLabelCountS() {
+		return labelCountS;
+	}
+	public JLabel getLabelCountB() {
+		return labelCountB;
+	}
 
 	public FaceJPanel(MainFrame frame) {
 		this.mainFrame = frame;
